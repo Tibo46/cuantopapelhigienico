@@ -1,0 +1,150 @@
+/*
+--- COLOURS ---
+RED #F6014C
+PURPLE #4E3797
+BLUE #009BA9
+YELLOW #FF9100
+*/
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.header {
+  height: 50vh;
+  flex-direction: column;
+  background-color: #f6014c;
+  font-family: "Coming Soon", cursive;
+  color: white;
+}
+.header .flex-child {
+  flex-basis: 100%;
+}
+
+.papelito {
+  align-self: center;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  height: 150px;
+  width: auto;
+}
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-100px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+input {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+h1.result {
+  color: #009ba9;
+  font-family: "Coming Soon", cursive;
+  margin-bottom: 2rem;
+}
+label {
+  margin-bottom: 1rem;
+  display: block;
+  margin-top: 1rem;
+}
+/*customised range*/
+input[type="range"].range {
+  cursor: pointer;
+  width: 100% !important;
+  height: 20px;
+  -webkit-appearance: none;
+  z-index: 200;
+  width: 50px;
+  background: rgb(0, 155, 169);
+  background: -moz-linear-gradient(
+    82deg,
+    rgba(0, 155, 169, 1) 0%,
+    rgba(78, 55, 151, 1) 95%
+  );
+  background: -webkit-linear-gradient(
+    82deg,
+    rgba(0, 155, 169, 1) 0%,
+    rgba(78, 55, 151, 1) 95%
+  );
+  background: linear-gradient(
+    82deg,
+    rgba(0, 155, 169, 1) 0%,
+    rgba(78, 55, 151, 1) 95%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009ba9",endColorstr="#4e3797",GradientType=1);
+}
+/*customised range when focusing on input */
+
+input[type="range"].range:focus {
+  border: 0;
+  outline: none;
+}
+
+/*customised range slider icon*/
+
+input[type="range"].range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  width: 40px;
+  height: 45px;
+  margin-bottom: -5px;
+  background: url(assets/img/papelito1.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 0 !important;
+}
+input[type="range"].range.sad::-webkit-slider-thumb {
+  background: url(assets/img/sadpapelito.svg);
+  background-size: contain;
+  width: 33px;
+  background-repeat: no-repeat;
+}
+
+/*setting round corners to the range */
+input[type="range"].round {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+/* set range from 0 - 1 horizontal as by default */
+.horizontal-lowest-first {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.papeles {
+  align-items: flex-end;
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+}

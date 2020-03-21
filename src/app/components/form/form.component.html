@@ -1,0 +1,138 @@
+<form
+  name="calculate-form"
+  id="calculate-form"
+  (change)="formChange()"
+  [formGroup]="toiletPaperForm"
+>
+  <h1 class="result">
+    Te quedan {{ numberOfDays }} días de papel higiénico disponible
+  </h1>
+  <fieldset>
+    <div class="flex papeles">
+      <div class="flex-child">
+        <img src="./assets/img/sadpapelito.svg" />
+      </div>
+      <div class="flex-child">
+        <img src="./assets/img/papelito2.svg" />
+      </div>
+      <div class="flex-child">
+        <img src="./assets/img/papelito3.svg" />
+      </div>
+    </div>
+    <label for="numberRolls"
+      >Número de rollos: {{ toiletPaperForm.value.numberRolls }}</label
+    >
+    <input
+      type="range"
+      class="range round"
+      [ngClass]="{ sad: toiletPaperForm.value.numberRolls < 5 }"
+      min="1"
+      max="200"
+      step="1"
+      formControlName="numberRolls"
+    />
+    <label for="numberSheets"
+      >Número de hojas por rollo:
+      {{ toiletPaperForm.value.numberSheets }}</label
+    >
+    <input
+      type="range"
+      class="range round"
+      [ngClass]="{ sad: toiletPaperForm.value.numberSheets < 110 }"
+      min="100"
+      max="1000"
+      step="1"
+      formControlName="numberSheets"
+      id="numberSheets"
+    />
+  </fieldset>
+
+  <fieldset
+    formArrayName="personGroup"
+    *ngFor="
+      let person of toiletPaperForm.get('personGroup').controls;
+      let i = index
+    "
+  >
+    <legend>Persona {{ i + 1 }}</legend>
+
+    <div [formGroupName]="i">
+      <label for="sheetsPerWipe{{ i }}"
+        >Cuántas hojas usas cada vez:
+        {{ personGroup.controls[i].value.sheetsPerWipe }}</label
+      >
+      <input
+        type="range"
+        class="range round"
+        min="1"
+        max="15"
+        step="1"
+        formControlName="sheetsPerWipe"
+        [ngClass]="{ sad: personGroup.controls[i].value.sheetsPerWipe > 6 }"
+        id="sheetsPerWipe{{ i }}"
+        placeholder="Cuántas hojas usas cada vez"
+      />
+      <label for="pooPerDay{{ i }}"
+        >Cuántas veces al día haces caca:
+        {{ personGroup.controls[i].value.pooPerDay }}</label
+      >
+      <input
+        type="range"
+        class="range round"
+        min="1"
+        max="10"
+        step="1"
+        formControlName="pooPerDay"
+        [ngClass]="{ sad: personGroup.controls[i].value.sheetsPerWipe > 4 }"
+        id="pooPerDay{{ i }}"
+        placeholder="Cuántas veces al día haces caca"
+      />
+      <label for="wipesPerPoo{{ i }}"
+        >Cuántas veces te limpias:
+        {{ personGroup.controls[i].value.wipesPerPoo }}</label
+      >
+      <input
+        type="range"
+        class="range round"
+        min="1"
+        max="50"
+        step="1"
+        formControlName="wipesPerPoo"
+        [ngClass]="{ sad: personGroup.controls[i].value.sheetsPerWipe > 20 }"
+        id="wipesPerPoo{{ i }}"
+        placeholder="Cuántas veces te limpias"
+      />
+      <label for="peePerDay{{ i }}"
+        >Cuántas veces al día vas a orinar:
+        {{ personGroup.controls[i].value.peePerDay }}</label
+      >
+      <input
+        type="range"
+        class="range round"
+        min="1"
+        max="20"
+        step="1"
+        formControlName="peePerDay"
+        [ngClass]="{ sad: personGroup.controls[i].value.sheetsPerWipe > 15 }"
+        id="peePerDay{{ i }}"
+        placeholder="Cuántas veces al día vas a orinar"
+      />
+      <label for="wipesPerPee{{ i }}"
+        >Cuántas veces te limpias:
+        {{ personGroup.controls[i].value.wipesPerPee }}</label
+      >
+      <input
+        type="range"
+        class="range round"
+        min="1"
+        max="5"
+        step="1"
+        formControlName="wipesPerPee"
+        [ngClass]="{ sad: personGroup.controls[i].value.sheetsPerWipe > 3 }"
+        id="wipesPerPee{{ i }}"
+        placeholder="Cuántas veces te limpias"
+      />
+    </div>
+  </fieldset>
+  <button (click)="addPerson()">Agregar persona</button>
+</form>
